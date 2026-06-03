@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scottsdale Drive Club — Exotic Car Rentals, Scottsdale AZ</title>
+<meta name="description" content="Exotic and luxury car rentals in Scottsdale, Arizona. Drive an Audi R8 V10, Mercedes S63 AMG, Corvette C8, or Toyota Supra. Call or text to book.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: #fff;
+  color: #111;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+button { font-family: inherit; }
+
+:root {
+  --green:   #111111;
+  --green-d: #000000;
+  --gold:    #c9aa71;
+  --gold-l:  #e8d5a0;
+  --ink:     #111111;
+  --body:    #444444;
+  --muted:   #888888;
+  --light:   #f5f0e8;
+  --border:  rgba(17,17,17,.1);
+  --border-md: rgba(17,17,17,.16);
+  --white:   #ffffff;
+  --pad: 80px;
+}
+
+/* ── TYPOGRAPHY ── */
+.t-display {
+  font-family: 'Cormorant', serif;
+  font-weight: 300;
+  font-size: clamp(64px, 8.5vw, 120px);
+  line-height: .88;
+  letter-spacing: -.025em;
+  color: #fff;
+}
+.t-display em { font-style: italic; color: white; }
+.t-h2 { font-family:'Cormorant',serif; font-weight:300; font-size:clamp(36px,4.5vw,68px); line-height:1; letter-spacing:-.015em; color:var(--ink); }
+.t-h2 em { font-style:italic; color:var(--gold); }
+.t-h3 { font-family:'Cormorant',serif; font-weight:400; font-size:clamp(22px,2.5vw,32px); line-height:1.15; color:var(--ink); }
+.t-label { font-family:'Jost',sans-serif; font-weight:400; font-size:9px; letter-spacing:.42em; text-transform:uppercase; color:#fff; }
+.t-label-dk { font-family:'Jost',sans-serif; font-weight:400; font-size:9px; letter-spacing:.42em; text-transform:uppercase; color:var(--muted); }
+.t-body { font-weight:300; font-size:15px; line-height:1.9; color:var(--body); }
+.t-small { font-weight:300; font-size:12px; letter-spacing:.06em; color:var(--muted); }
+.t-price { font-family:'Cormorant',serif; font-weight:300; font-size:56px; line-height:1; color:var(--ink); }
+
+/* ── BUTTONS ── */
+.btn { display:inline-block; font-family:'Jost',sans-serif; font-weight:300; font-size:10px; letter-spacing:.38em; text-transform:uppercase; padding:15px 36px; transition:background .3s, color .3s, border-color .3s; cursor:pointer; }
+.btn-white { background:#fff; color:var(--ink); border:1px solid #fff; }
+.btn-white:hover { background:transparent; color:#fff; border-color:rgba(255,255,255,.6); }
+.btn-outline-white { background:transparent; color:#fff; border:1px solid rgba(255,255,255,.35); }
+.btn-outline-white:hover { border-color:#fff; background:rgba(255,255,255,.06); }
+.btn-dark { background:var(--ink); color:#fff; border:1px solid var(--ink); }
+.btn-dark:hover { background:var(--gold); border-color:var(--gold); }
+.btn-green { background:var(--green); color:#fff; border:1px solid var(--green); }
+.btn-green:hover { background:var(--green-d); border-color:var(--green-d); }
+.btn-ghost { background:transparent; color:var(--ink); border:1px solid var(--border-md); }
+.btn-ghost:hover { border-color:var(--ink); }
+
+/* ── NAV ── */
+nav { position:fixed; top:0; left:0; right:0; z-index:200; height:72px; display:flex; align-items:center; justify-content:space-between; padding:0 var(--pad); transition:background .5s, border-color .5s; border-bottom:1px solid transparent; }
+nav.scrolled { background:rgba(255,255,255,.96); backdrop-filter:blur(18px); border-color:var(--border); }
+.nav-logo img {
+  height: 80px;
+  width: auto;
+  transition: filter .4s;
+  filter: brightness(0) invert(1);
+}
+nav.scrolled .nav-logo img { filter:none; opacity:.85; }
+.nav-links { display:flex; gap:44px; list-style:none; }
+.nav-links a { font-size:10px; letter-spacing:.28em; text-transform:uppercase; font-weight:300; color:rgba(255,255,255,.65); transition:color .25s; }
+nav.scrolled .nav-links a { color:var(--muted); }
+.nav-links a:hover { color:#fff; }
+nav.scrolled .nav-links a:hover { color:var(--ink); }
+.nav-cta { font-size:10px; letter-spacing:.28em; text-transform:uppercase; font-weight:300; color:#fff; border:1px solid rgba(255,255,255,.32); padding:10px 24px; transition:background .3s, border-color .3s, color .3s; }
+.nav-cta:hover { background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.7); }
+nav.scrolled .nav-cta { color:var(--ink); border-color:var(--border-md); }
+nav.scrolled .nav-cta:hover { background:var(--gold); color:#fff; border-color:var(--gold); }
+.ham { display:none; flex-direction:column; gap:6px; background:none; border:none; padding:4px; cursor:pointer; }
+.ham span { display:block; width:22px; height:1px; background:#fff; transition:background .4s; }
+nav.scrolled .ham span { background:var(--ink); }
+.mnav { display:none; position:fixed; inset:0; background:#fff; z-index:199; flex-direction:column; align-items:center; justify-content:center; gap:40px; padding-top:72px; }
+.mnav.on { display:flex; }
+.mnav a { font-family:'Cormorant',serif; font-size:40px; font-weight:300; color:var(--ink); }
+.mnav a:hover { color:var(--gold); }
+
+/* ── HERO ── */
+.hero { position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden; text-align:center; }
+.hero-bg { position:absolute; inset:0; z-index:0; }
+.hero-bg img { width:100%; height:100%; object-fit:cover; transform:scale(1.06); animation:zoomOut 16s ease-out forwards; filter:brightness(.6) saturate(.7); }
+.hero-bg::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(10,10,10,.55) 0%, rgba(10,10,10,.4) 50%, rgba(10,10,10,.65) 100%); }
+@keyframes zoomOut { to { transform:scale(1); } }
+.hero-content { position:relative; z-index:1; padding:140px var(--pad) 120px; max-width:900px; display:flex; flex-direction:column; align-items:center; }
+.hero-badge { display:flex; align-items:center; gap:14px; margin-bottom:36px; }
+.hero-badge-line { width:32px; height:1px; background:var(--gold); }
+.hero-badge-text { font-size:9px; letter-spacing:.46em; text-transform:uppercase; font-weight:400; color:#fff; }
+.hero-title { margin-bottom:28px; }
+.hero-sub { max-width:480px; margin-bottom:48px; font-size:16px; font-weight:300; line-height:1.82; color:rgba(255,255,255,1); }
+.hero-actions { display:flex; align-items:center; gap:14px; flex-wrap:wrap; justify-content:center; }
+.hero-scroll { position:absolute; bottom:40px; left:50%; transform:translateX(-50%); z-index:1; display:flex; flex-direction:column; align-items:center; gap:10px; }
+.hero-scroll-line { width:1px; height:36px; background:rgba(255,255,255,.2); }
+.hero-scroll-text { font-size:8px; letter-spacing:.4em; text-transform:uppercase; color:rgba(255,255,255,.28); }
+.hero-content > * { opacity:0; transform:translateY(20px); animation:hIn .95s ease-out forwards; }
+.hero-badge   { animation-delay:.1s; }
+.hero-title   { animation-delay:.28s; }
+.hero-sub     { animation-delay:.44s; }
+.hero-actions { animation-delay:.6s; }
+@keyframes hIn { to { opacity:1; transform:none; } }
+
+/* ── STAT BAR ── */
+.statbar { display:grid; grid-template-columns:repeat(4,1fr); background:#fff; border-top:3px solid var(--gold); border-bottom:1px solid var(--border); }
+.statbar-item { padding:36px 48px; border-right:1px solid var(--border); display:flex; flex-direction:column; gap:8px; }
+.statbar-item:last-child { border-right:none; }
+.statbar-n { font-family:'Cormorant',serif; font-weight:300; font-size:46px; line-height:1; color:var(--ink); }
+.statbar-l { font-size:9px; letter-spacing:.34em; text-transform:uppercase; color:var(--gold); font-weight:400; }
+.statbar-sub { font-size:12px; font-weight:300; color:var(--muted); }
+
+/* ── SECTION ── */
+.section { padding:120px var(--pad); }
+.bg-light { background:var(--light); }
+.bg-white { background:#fff; }
+.bg-green { background:var(--ink); }
+.section-header { margin-bottom:72px; }
+.section-header-flex { display:flex; align-items:flex-end; justify-content:space-between; gap:40px; margin-bottom:72px; }
+
+/* ── FLEET TABS ── */
+.tabs { display:flex; border-bottom:1px solid var(--border-md); overflow-x:auto; }
+.tab { padding:16px 32px; font-size:10px; letter-spacing:.3em; text-transform:uppercase; font-weight:300; color:var(--muted); background:none; border:none; border-bottom:2px solid transparent; margin-bottom:-1px; transition:color .25s, border-color .25s; white-space:nowrap; cursor:pointer; }
+.tab:hover { color:var(--ink); }
+.tab.on { color:var(--gold); border-bottom-color:var(--gold); font-weight:400; }
+.panel { display:none; }
+.panel.on { display:grid; grid-template-columns:1fr 1fr; min-height:600px; }
+.gal-wrap { position:relative; background:#e8e4dc; overflow:hidden; }
+.gal-main { width:100%; height:100%; object-fit:cover; cursor:zoom-in; display:block; transition:transform .6s cubic-bezier(.25,.46,.45,.94); }
+.gal-wrap:hover .gal-main { transform:scale(1.02); }
+.gal-ctrl { position:absolute; top:50%; transform:translateY(-50%); width:44px; height:44px; background:rgba(255,255,255,.92); backdrop-filter:blur(8px); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:20px; color:var(--ink); transition:background .2s; z-index:2; cursor:pointer; }
+.gal-ctrl:hover { background:#fff; color:var(--gold); }
+.gal-prev { left:20px; }
+.gal-next { right:20px; }
+.gal-counter { position:absolute; bottom:20px; right:20px; font-size:10px; letter-spacing:.2em; color:rgba(255,255,255,.8); background:rgba(10,10,10,.4); padding:5px 10px; backdrop-filter:blur(4px); }
+.thumbs { display:flex; gap:3px; position:absolute; bottom:0; left:0; right:0; background:rgba(10,10,10,.22); padding:6px; }
+.thumb { height:52px; flex:1; object-fit:cover; cursor:pointer; opacity:.45; transition:opacity .2s; }
+.thumb.on { opacity:1; outline:1.5px solid #fff; }
+.info-pane { padding:52px 60px; display:flex; flex-direction:column; justify-content:space-between; background:#fff; border-left:1px solid var(--border); }
+.info-tag { margin-bottom:16px; }
+.info-name { margin-bottom:6px; }
+.info-year { margin-bottom:24px; }
+.info-desc { margin-bottom:28px; max-width:380px; }
+.specs-row { display:grid; grid-template-columns:repeat(3,1fr); border:1px solid var(--border); margin-bottom:32px; background:var(--light); }
+.spec { padding:18px 20px; border-right:1px solid var(--border); }
+.spec:last-child { border-right:none; }
+.spec-v { font-family:'Cormorant',serif; font-size:26px; font-weight:400; color:var(--ink); line-height:1; }
+.spec-k { font-size:9px; letter-spacing:.25em; text-transform:uppercase; color:var(--muted); margin-top:5px; }
+.price-row { display:flex; align-items:baseline; gap:10px; margin-bottom:32px; }
+.price-from { font-size:10px; letter-spacing:.25em; text-transform:uppercase; color:var(--muted); }
+.price-day { font-size:13px; color:var(--muted); }
+.info-btns { display:flex; gap:12px; flex-wrap:wrap; }
+
+/* ── ABOUT ── */
+.about-grid { display:grid; grid-template-columns:1fr 1fr; }
+.about-img-wrap { position:relative; overflow:hidden; min-height:580px; }
+.about-img-wrap img { width:100%; height:100%; object-fit:cover; filter:saturate(.82); }
+.about-text-wrap { padding:88px 80px; display:flex; flex-direction:column; justify-content:center; background:#fff; }
+.about-copy { margin-top:28px; }
+.about-copy p { margin-bottom:20px; }
+.about-copy strong { font-weight:400; color:var(--ink); }
+.about-accent { display:flex; align-items:center; gap:14px; margin-bottom:20px; }
+.about-accent-line { width:32px; height:1px; background:var(--gold); }
+
+/* ── PILLARS ── */
+.pillars-grid { display:grid; grid-template-columns:repeat(3,1fr); }
+.pillar { padding:64px 52px; border-right:1px solid var(--border-md); position:relative; }
+.pillar:last-child { border-right:none; }
+.pillar-num { font-family:'Cormorant',serif; font-weight:300; font-size:88px; color:rgba(201,170,113,.15); line-height:1; position:absolute; top:24px; right:28px; user-select:none; }
+.pillar-icon { width:32px; height:1px; background:var(--gold); margin-bottom:24px; }
+.pillar-title { margin-bottom:14px; }
+
+/* ── TESTIMONIALS ── */
+.testi-grid { display:grid; grid-template-columns:repeat(3,1fr); border:1px solid var(--border); }
+.testi { padding:48px 40px; border-right:1px solid var(--border); background:#fff; }
+.testi:last-child { border-right:none; }
+.testi-open { font-family:'Cormorant',serif; font-size:56px; line-height:1; color:var(--gold-l); display:block; margin-bottom:-8px; }
+.testi-stars { color:var(--gold); font-size:11px; letter-spacing:3px; margin-bottom:16px; }
+.testi-text { font-size:15px; font-weight:300; line-height:1.82; color:var(--body); font-style:italic; }
+.testi-top { display:flex; align-items:center; gap:14px; margin-top:28px; padding-top:24px; border-top:1px solid var(--border); }
+.testi-avatar { width:48px; height:48px; border-radius:50%; object-fit:cover; flex-shrink:0; border:2px solid var(--border); }
+.testi-name { font-family:'Cormorant',serif; font-size:19px; font-weight:400; color:var(--ink); }
+.testi-vehicle { font-size:9px; letter-spacing:.25em; text-transform:uppercase; color:var(--gold); margin-top:2px; }
+
+/* ── AZ STRIP ── */
+.az { display:grid; grid-template-columns:1fr 1fr; min-height:520px; }
+.az-visual { position:relative; overflow:hidden; }
+.az-visual img { width:100%; height:100%; object-fit:cover; filter:saturate(.5) brightness(.8); }
+.az-visual::after { content:''; position:absolute; inset:0; background:linear-gradient(to right, transparent 30%, rgba(255,255,255,.6) 55%, #fff 80%); }
+.az-body { padding:80px 72px; display:flex; flex-direction:column; justify-content:center; background:#fff; }
+.az-facts { display:grid; grid-template-columns:1fr 1fr; gap:32px 0; margin:40px 0; border-top:1px solid var(--border); padding-top:32px; }
+.az-fact-n { font-family:'Cormorant',serif; font-weight:300; font-size:38px; color:var(--ink); line-height:1; }
+.az-fact-l { font-size:9px; letter-spacing:.25em; text-transform:uppercase; color:var(--muted); margin-top:5px; }
+
+/* ── GREEN BAND ── */
+.green-band { background:#000; padding:64px var(--pad); display:flex; align-items:center; justify-content:space-between; gap:40px; }
+.green-band-text { font-family:'Cormorant',serif; font-weight:300; font-size:clamp(28px,3vw,44px); color:#fff; line-height:1.1; }
+.green-band-text em { font-style:italic; color:var(--gold-l); }
+.green-band-sub { font-size:14px; font-weight:300; color:rgba(255,255,255,.55); margin-top:10px; max-width:400px; }
+
+/* ── FAQ ── */
+.faq-cols { display:grid; grid-template-columns:1fr 1fr; gap:0 80px; margin-top:56px; }
+.faq-item { border-bottom:1px solid var(--border-md); }
+.faq-q { padding:20px 0; display:flex; justify-content:space-between; align-items:center; font-size:14px; font-weight:300; color:var(--ink); cursor:pointer; user-select:none; gap:20px; transition:color .2s; }
+.faq-q:hover { color:var(--gold); }
+.faq-plus { font-size:20px; font-weight:200; color:var(--muted); line-height:1; flex-shrink:0; transition:transform .35s, color .25s; }
+.faq-item.open .faq-plus { transform:rotate(45deg); color:var(--gold); }
+.faq-a { max-height:0; overflow:hidden; transition:max-height .45s ease; }
+.faq-a-inner { padding-bottom:20px; font-size:13px; font-weight:300; line-height:1.85; color:var(--body); }
+.faq-item.open .faq-a { max-height:180px; }
+
+/* ── CONTACT ── */
+.contact-grid { display:grid; grid-template-columns:1fr 1fr; border:1px solid var(--border); }
+.contact-left { padding:80px 72px; border-right:1px solid var(--border); background:#fff; }
+.contact-right { padding:80px 72px; background:var(--light); }
+.contact-methods { margin-top:40px; display:flex; flex-direction:column; border-top:1px solid var(--border); }
+.contact-method { padding:24px 0; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:24px; }
+.cm-icon { font-size:16px; width:32px; flex-shrink:0; color:var(--gold); }
+.cm-l { font-size:9px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted); margin-bottom:5px; }
+.cm-v { font-family:'Cormorant',serif; font-size:21px; font-weight:300; color:var(--ink); }
+.cm-v a { color:var(--ink); transition:color .25s; }
+.cm-v a:hover { color:var(--gold); }
+.cf-label { font-size:9px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:8px; }
+.cf-input,.cf-select,.cf-textarea { width:100%; border:none; border-bottom:1px solid var(--border-md); background:transparent; color:var(--ink); font-family:'Jost',sans-serif; font-weight:300; font-size:14px; padding:12px 0; outline:none; margin-bottom:26px; transition:border-color .25s; -webkit-appearance:none; }
+.cf-input::placeholder,.cf-textarea::placeholder { color:#ccc; }
+.cf-input:focus,.cf-select:focus,.cf-textarea:focus { border-color:var(--gold); }
+.cf-select option { background:#fff; }
+.cf-textarea { resize:none; height:90px; }
+.cf-row { display:grid; grid-template-columns:1fr 1fr; gap:0 32px; }
+.cf-submit { width:100%; background:var(--green); color:#fff; border:none; padding:18px; font-family:'Jost',sans-serif; font-weight:300; font-size:10px; letter-spacing:.38em; text-transform:uppercase; transition:background .3s; cursor:pointer; }
+.cf-submit:hover { background:var(--green-d); }
+
+/* ── FOOTER ── */
+footer { background:#fff; border-top:1px solid var(--border); padding:64px var(--pad) 40px; }
+.footer-top { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:48px; padding-bottom:52px; border-bottom:1px solid var(--border); margin-bottom:32px; }
+.footer-logo { height:80px; width:auto; margin-bottom:20px; }
+.footer-tagline { font-size:13px; font-weight:300; color:var(--muted); line-height:1.75; max-width:240px; }
+.footer-col-h { font-size:9px; letter-spacing:.36em; text-transform:uppercase; color:var(--gold); font-weight:400; margin-bottom:20px; }
+.footer-col ul { list-style:none; display:flex; flex-direction:column; gap:13px; }
+.footer-col ul a { font-size:13px; font-weight:300; color:var(--muted); transition:color .25s; }
+.footer-col ul a:hover { color:var(--gold); }
+.footer-bottom { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+.footer-copy { font-size:11px; color:#bbb; }
+.footer-legal { display:flex; gap:28px; }
+.footer-legal a { font-size:11px; color:#bbb; transition:color .25s; }
+.footer-legal a:hover { color:var(--muted); }
+
+/* ── LIGHTBOX ── */
+#lb { position:fixed; inset:0; background:rgba(255,255,255,.97); z-index:500; display:none; align-items:center; justify-content:center; }
+#lb.on { display:flex; }
+#lb-img { max-width:88vw; max-height:88vh; object-fit:contain; }
+.lb-close { position:absolute; top:28px; right:36px; font-size:24px; font-weight:200; color:var(--muted); background:none; border:none; cursor:pointer; transition:color .2s; }
+.lb-close:hover { color:var(--ink); }
+.lb-arr { position:absolute; top:50%; transform:translateY(-50%); font-size:36px; font-weight:200; color:#ccc; background:none; border:none; transition:color .2s; padding:16px; cursor:pointer; }
+.lb-arr:hover { color:var(--ink); }
+#lb-prev { left:24px; }
+#lb-next { right:24px; }
+
+/* ── REVEAL ── */
+.rev { opacity:0; transform:translateY(24px); transition:opacity .85s ease, transform .85s ease; }
+.rev.in { opacity:1; transform:none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width:1024px) {
+  :root { --pad:40px; }
+  .panel.on { grid-template-columns:1fr; }
+  .info-pane { border-left:none; border-top:1px solid var(--border); padding:44px 40px; }
+  .about-grid { grid-template-columns:1fr; }
+  .about-img-wrap { min-height:360px; }
+  .about-text-wrap { padding:64px var(--pad); }
+  .az { grid-template-columns:1fr; }
+  .az-visual { height:360px; }
+  .az-visual::after { background:linear-gradient(to bottom, transparent 40%, rgba(255,255,255,.6) 65%, #fff 90%); }
+  .az-body { padding:64px var(--pad); }
+  .contact-grid { grid-template-columns:1fr; }
+  .contact-left { border-right:none; border-bottom:1px solid var(--border); padding:60px var(--pad); }
+  .contact-right { padding:60px var(--pad); }
+  .footer-top { grid-template-columns:1fr 1fr; gap:36px; }
+  .footer-top > div:first-child { grid-column:span 2; }
+  .green-band { flex-direction:column; align-items:flex-start; }
+}
+@media (max-width:768px) {
+  :root { --pad:24px; }
+  .nav-links,.nav-cta { display:none; }
+  .ham { display:flex; }
+  .hero-content { padding:120px var(--pad) 100px; }
+  .statbar { grid-template-columns:1fr 1fr; }
+  .statbar-item { padding:28px 24px; }
+  .statbar-item:nth-child(2) { border-right:none; }
+  .pillars-grid { grid-template-columns:1fr; }
+  .pillar { border-right:none; border-bottom:1px solid var(--border-md); }
+  .testi-grid { grid-template-columns:1fr; }
+  .testi { border-right:none; border-bottom:1px solid var(--border); }
+  .faq-cols { grid-template-columns:1fr; gap:0; }
+  .footer-top { grid-template-columns:1fr; }
+  .footer-top > div:first-child { grid-column:span 1; }
+  .section { padding:80px var(--pad); }
+  .section-header-flex { flex-direction:column; align-items:flex-start; gap:20px; }
+  .cf-row { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<div id="lb">
+  <button class="lb-close" id="lbX">✕</button>
+  <button class="lb-arr" id="lb-prev">‹</button>
+  <img id="lb-img" src="" alt="">
+  <button class="lb-arr" id="lb-next">›</button>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <img src="scottsdalelogopng.png"Scottsdale Drive Club">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#fleet">Fleet</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="tel:+13609270408" class="nav-cta">Reserve Now</a>
+  <button class="ham" id="ham" onclick="mnavToggle()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mnav" id="mnav">
+  <a href="#fleet" onclick="mnavToggle()">Fleet</a>
+  <a href="#about" onclick="mnavToggle()">About</a>
+  <a href="#contact" onclick="mnavToggle()">Contact</a>
+  <a href="tel:+13609270408" onclick="mnavToggle()" style="font-size:22px;color:var(--gold)">(360) 927-0408</a>
+</div>
+
+<!-- HERO -->
+<div class="hero" id="home">
+  <div class="hero-bg">
+    <img src="https://static.wixstatic.com/media/6bca23_47a4cdcfad8b4081bcaf6d2901fe8075~mv2.jpg" alt="Audi R8 V10">
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <div class="hero-badge-line"></div>
+      <span class="hero-badge-text">Scottsdale, Arizona</span>
+      <div class="hero-badge-line"></div>
+    </div>
+    <h1 class="t-display hero-title">Drive<br><em>Extra&shy;ordinary</em></h1>
+    <p class="hero-sub">Exotic and luxury car rentals curated for those who understand that how you arrive is part of the experience.</p>
+    <div class="hero-actions">
+      <a href="#fleet" class="btn btn-white">Explore Fleet</a>
+      <a href="#contact" class="btn btn-outline-white">Book Directly</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span class="hero-scroll-text">Scroll</span>
+  </div>
+</div>
+
+<!-- STAT BAR -->
+<div class="statbar rev">
+  <div class="statbar-item">
+    <span class="statbar-l">Fleet</span>
+    <span class="statbar-n">4</span>
+    <span class="statbar-sub">Exotic Vehicles</span>
+  </div>
+  <div class="statbar-item">
+    <span class="statbar-l">Delivery</span>
+    <span class="statbar-n">Valet</span>
+    <span class="statbar-sub">Scottsdale Area</span>
+  </div>
+  <div class="statbar-item">
+    <span class="statbar-l">Starting From</span>
+    <span class="statbar-n">$300</span>
+    <span class="statbar-sub">Per Day</span>
+  </div>
+  <div class="statbar-item">
+    <span class="statbar-l">Availability</span>
+    <span class="statbar-n">24/7</span>
+    <span class="statbar-sub">Call or Text</span>
+  </div>
+</div>
+
+<!-- FLEET -->
+<section class="section bg-white" id="fleet">
+  <div class="section-header-flex rev">
+    <div>
+      <div class="t-label-dk" style="margin-bottom:16px">The Fleet</div>
+      <h2 class="t-h2">Four Machines.<br><em>One Standard.</em></h2>
+    </div>
+    <p class="t-body" style="max-width:280px">Every vehicle detailed before each rental. Call or text to check availability.</p>
+  </div>
+  <div class="tabs rev">
+    <button class="tab on" onclick="showCar('r8',this)">Audi R8 V10</button>
+    <button class="tab" onclick="showCar('s63',this)">Mercedes S63 AMG</button>
+    <button class="tab" onclick="showCar('c8',this)">Corvette C8</button>
+    <button class="tab" onclick="showCar('supra',this)">Toyota Supra</button>
+  </div>
+
+  <div class="panel on" id="p-r8">
+    <div class="gal-wrap">
+      <img class="gal-main" id="gm-r8" src="https://static.wixstatic.com/media/6bca23_47a4cdcfad8b4081bcaf6d2901fe8075~mv2.jpg" alt="Audi R8 V10" onclick="openLb('r8')">
+      <button class="gal-ctrl gal-prev" onclick="shift('r8',-1)">‹</button>
+      <button class="gal-ctrl gal-next" onclick="shift('r8',1)">›</button>
+      <div class="gal-counter" id="gc-r8">1 / 9</div>
+      <div class="thumbs" id="th-r8"></div>
+    </div>
+    <div class="info-pane">
+      <div>
+        <div class="info-tag"><span class="t-label">Flagship · Supercar</span></div>
+        <h3 class="t-h3 info-name">Audi R8 V10</h3>
+        <p class="t-small info-year" style="letter-spacing:.18em">2012 &nbsp;·&nbsp; Mid-Engine &nbsp;·&nbsp; Quattro AWD</p>
+        <p class="t-body info-desc">A naturally aspirated 5.2-liter V10 with 525 horsepower, an unmistakable exhaust at full throttle, mid-engine balance, and Quattro AWD. One of the most iconic supercars of its era.</p>
+        <div class="specs-row">
+          <div class="spec"><div class="spec-v">5.2L V10</div><div class="spec-k">Engine</div></div>
+          <div class="spec"><div class="spec-v">525 hp</div><div class="spec-k">Power</div></div>
+          <div class="spec"><div class="spec-v">3.9 s</div><div class="spec-k">0–60 mph</div></div>
+        </div>
+        <div class="price-row">
+          <span class="price-from">From</span>
+          <span class="t-price">$600</span>
+          <span class="price-day">/ day</span>
+        </div>
+      </div>
+      <div class="info-btns">
+        <a href="tel:+13609270408" class="btn btn-green">Reserve — Call / Text</a>
+        <a href="mailto:thescottsdaledriveclub@gmail.com" class="btn btn-ghost">Email</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="p-s63">
+    <div class="gal-wrap">
+      <img class="gal-main" id="gm-s63" src="https://static.wixstatic.com/media/6bca23_4c9ee3f0d2144716a0b6432a57761cd8~mv2.jpg" alt="Mercedes S63" onclick="openLb('s63')">
+      <button class="gal-ctrl gal-prev" onclick="shift('s63',-1)">‹</button>
+      <button class="gal-ctrl gal-next" onclick="shift('s63',1)">›</button>
+      <div class="gal-counter" id="gc-s63">1 / 9</div>
+      <div class="thumbs" id="th-s63"></div>
+    </div>
+    <div class="info-pane">
+      <div>
+        <div class="info-tag"><span class="t-label">Grand Tourer · Luxury</span></div>
+        <h3 class="t-h3 info-name">Mercedes S63 AMG Coupé</h3>
+        <p class="t-small info-year" style="letter-spacing:.18em">2018 &nbsp;·&nbsp; Biturbo V8 &nbsp;·&nbsp; 4MATIC+</p>
+        <p class="t-body info-desc">A handcrafted 5.5-liter twin-turbo V8 with 577 hp and 664 lb-ft of torque. Hand-stitched leather, cutting-edge technology, and AMG performance in S-Class elegance.</p>
+        <div class="specs-row">
+          <div class="spec"><div class="spec-v">5.5L V8</div><div class="spec-k">Engine</div></div>
+          <div class="spec"><div class="spec-v">577 hp</div><div class="spec-k">Power</div></div>
+          <div class="spec"><div class="spec-v">3.9 s</div><div class="spec-k">0–60 mph</div></div>
+        </div>
+        <div class="price-row">
+          <span class="price-from">From</span>
+          <span class="t-price">$350</span>
+          <span class="price-day">/ day</span>
+        </div>
+      </div>
+      <div class="info-btns">
+        <a href="tel:+13609270408" class="btn btn-green">Reserve — Call / Text</a>
+        <a href="mailto:thescottsdaledriveclub@gmail.com" class="btn btn-ghost">Email</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="p-c8">
+    <div class="gal-wrap">
+      <img class="gal-main" id="gm-c8" src="https://static.wixstatic.com/media/6bca23_3eec5bc79ac244df88f89247a6e44bea~mv2.jpg" alt="Corvette C8" onclick="openLb('c8')">
+      <button class="gal-ctrl gal-prev" onclick="shift('c8',-1)">‹</button>
+      <button class="gal-ctrl gal-next" onclick="shift('c8',1)">›</button>
+      <div class="gal-counter" id="gc-c8">1 / 6</div>
+      <div class="thumbs" id="th-c8"></div>
+    </div>
+    <div class="info-pane">
+      <div>
+        <div class="info-tag"><span class="t-label">Open Air · Convertible</span></div>
+        <h3 class="t-h3 info-name">Corvette C8 2LT Convertible</h3>
+        <p class="t-small info-year" style="letter-spacing:.18em">2023 &nbsp;·&nbsp; Mid-Engine &nbsp;·&nbsp; Convertible</p>
+        <p class="t-body info-desc">America's supercar reimagined. 495 hp, 0–60 in 2.9 seconds, and open-air freedom under Arizona's endless sky. The 2LT package brings premium comfort and driver-focused precision.</p>
+        <div class="specs-row">
+          <div class="spec"><div class="spec-v">6.2L V8</div><div class="spec-k">Engine</div></div>
+          <div class="spec"><div class="spec-v">495 hp</div><div class="spec-k">Power</div></div>
+          <div class="spec"><div class="spec-v">2.9 s</div><div class="spec-k">0–60 mph</div></div>
+        </div>
+        <div class="price-row">
+          <span class="price-from">From</span>
+          <span class="t-price">$400</span>
+          <span class="price-day">/ day</span>
+        </div>
+      </div>
+      <div class="info-btns">
+        <a href="tel:+13609270408" class="btn btn-green">Reserve — Call / Text</a>
+        <a href="mailto:thescottsdaledriveclub@gmail.com" class="btn btn-ghost">Email</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="p-supra">
+    <div class="gal-wrap">
+      <img class="gal-main" id="gm-supra" src="https://static.wixstatic.com/media/6bca23_6133ab55cba341f7b80fa792be4e6dd2~mv2.jpg" alt="Toyota GR Supra" onclick="openLb('supra')">
+      <button class="gal-ctrl gal-prev" onclick="shift('supra',-1)">‹</button>
+      <button class="gal-ctrl gal-next" onclick="shift('supra',1)">›</button>
+      <div class="gal-counter" id="gc-supra">1 / 9</div>
+      <div class="thumbs" id="th-supra"></div>
+    </div>
+    <div class="info-pane">
+      <div>
+        <div class="info-tag"><span class="t-label">Street Icon · Sports Coupé</span></div>
+        <h3 class="t-h3 info-name">Toyota GR Supra 3.0</h3>
+        <p class="t-small info-year" style="letter-spacing:.18em">2024 &nbsp;·&nbsp; Turbo Inline-6 &nbsp;·&nbsp; RWD</p>
+        <p class="t-body info-desc">A turbocharged 3.0-liter inline-six with 382 hp and razor-sharp handling. In striking yellow, this Supra isn't just a sports car — it's a statement that turns heads on every street.</p>
+        <div class="specs-row">
+          <div class="spec"><div class="spec-v">3.0L I-6</div><div class="spec-k">Engine</div></div>
+          <div class="spec"><div class="spec-v">382 hp</div><div class="spec-k">Power</div></div>
+          <div class="spec"><div class="spec-v">3.9 s</div><div class="spec-k">0–60 mph</div></div>
+        </div>
+        <div class="price-row">
+          <span class="price-from">From</span>
+          <span class="t-price">$300</span>
+          <span class="price-day">/ day</span>
+        </div>
+      </div>
+      <div class="info-btns">
+        <a href="tel:+13609270408" class="btn btn-green">Reserve — Call / Text</a>
+        <a href="mailto:thescottsdaledriveclub@gmail.com" class="btn btn-ghost">Email</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section bg-light" id="about" style="padding-bottom:0">
+  <div class="section-header rev">
+    <div class="t-label-dk" style="margin-bottom:16px">About</div>
+    <h2 class="t-h2">Built for<br><em>the Drive</em></h2>
+  </div>
+  <div class="about-grid rev">
+    <div class="about-img-wrap">
+      <img src="scottsdalelogo66.png" alt="Mercedes S63 AMG Scottsdale">
+    </div>
+    <div class="about-text-wrap">
+      <div class="about-accent">
+        <div class="about-accent-line"></div>
+        <div class="t-label">Our Philosophy</div>
+      </div>
+      <div class="about-copy t-body">
+        <p>Scottsdale Drive Club was founded on a simple belief: <strong>the right car changes everything.</strong> We hand-select machines that reward drivers who appreciate engineering, not just aesthetics.</p>
+        <p>Whether you're a visiting enthusiast, celebrating a milestone, or simply want to experience Scottsdale the way it deserves to be — open road, perfect weather, something extraordinary under the hood — we make it effortless.</p>
+        <p>No fleets. No haggling. <strong>Just great cars, transparent pricing, and real people who love what they do.</strong></p>
+      </div>
+      <a href="#contact" class="btn btn-green" style="margin-top:44px;align-self:flex-start">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="section bg-white" id="experience" style="border-top:1px solid var(--border)">
+  <div class="section-header rev">
+    <div class="t-label-dk" style="margin-bottom:16px">Why Us</div>
+    <h2 class="t-h2">The <em>Experience</em></h2>
+  </div>
+  <div class="pillars-grid rev">
+    <div class="pillar">
+      <div class="pillar-num">01</div>
+      <div class="pillar-icon"></div>
+      <h3 class="t-h3 pillar-title">Hand-Curated Fleet</h3>
+      <p class="t-body">Every vehicle is personally selected, meticulously maintained, and detailed before each rental. You drive it in its best condition — always.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">02</div>
+      <div class="pillar-icon"></div>
+      <h3 class="t-h3 pillar-title">Transparent Pricing</h3>
+      <p class="t-body">No hidden fees, no surprises at pickup. What you see is what you pay. The experience should start with a handshake, not fine print.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">03</div>
+      <div class="pillar-icon"></div>
+      <h3 class="t-h3 pillar-title">Direct &amp; Personal</h3>
+      <p class="t-body">Call or text us — no automated systems. Real people who love cars, ready to make your reservation simple and seamless.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GREEN BAND CTA -->
+<div class="green-band rev">
+  <div>
+    <p class="green-band-text">The perfect car for<br><em>every Scottsdale occasion.</em></p>
+    <p class="green-band-sub">300+ sunny days a year. Open desert highways. Something extraordinary under the hood.</p>
+  </div>
+  <a href="tel:+13609270408" class="btn btn-white" style="white-space:nowrap;flex-shrink:0">Call (360) 927-0408</a>
+</div>
+
+<!-- AZ STRIP -->
+<div class="az rev">
+  <div class="az-visual">
+    <img src="https://static.wixstatic.com/media/6bca23_0913f61f19784afcb75a0f2ff86e0e1c~mv2.jpeg" alt="Scottsdale Arizona">
+  </div>
+  <div class="az-body">
+    <div class="t-label-dk" style="margin-bottom:16px">Scottsdale, Arizona</div>
+    <h3 class="t-h2" style="font-size:clamp(28px,3vw,46px)">The Perfect City<br>for an <em>Extraordinary</em> Drive</h3>
+    <p class="t-body" style="margin-top:20px;max-width:380px">Wide-open desert highways, mountain passes, and 300+ days of sunshine. Scottsdale is made for this.</p>
+    <div class="az-facts">
+      <div><div class="az-fact-n">300+</div><div class="az-fact-l">Sunny Days / Year</div></div>
+      <div><div class="az-fact-n">$300</div><div class="az-fact-l">Starting / Day</div></div>
+      <div><div class="az-fact-n">4</div><div class="az-fact-l">Exotic Vehicles</div></div>
+      <div><div class="az-fact-n">24/7</div><div class="az-fact-l">Call or Text Line</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="section bg-light">
+  <div class="section-header rev">
+    <div class="t-label-dk" style="margin-bottom:16px">Reviews</div>
+    <h2 class="t-h2">Heard on<br>the <em>Road</em></h2>
+  </div>
+  <div class="testi-grid rev">
+    <div class="testi">
+      <span class="testi-open">"</span>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">The rental experience was absolutely top-notch. The R8 was immaculate and the whole process was seamless — called, confirmed, and picked up in under an hour. I'll be back every time I'm in Scottsdale.</p>
+      <div class="testi-top">
+        <img class="testi-avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Johnson">
+        <div>
+          <div class="testi-name">Michael Johnson</div>
+          <div class="testi-vehicle">Audi R8 V10</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi">
+      <span class="testi-open">"</span>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">Exceptional service and a genuinely impressive selection. The S63 was everything I hoped for — and the team made the whole experience feel premium without any pretense. Flawless from start to finish.</p>
+      <div class="testi-top">
+        <img class="testi-avatar" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Aisha Patel">
+        <div>
+          <div class="testi-name">Aisha Patel</div>
+          <div class="testi-vehicle">Mercedes S63 AMG</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi">
+      <span class="testi-open">"</span>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">I've rented from the big chains before. This is nothing like that. It felt like borrowing a car from a friend who actually knows what good driving feels like. Highly, highly recommended.</p>
+      <div class="testi-top">
+        <img class="testi-avatar" src="https://randomuser.me/api/portraits/men/76.jpg" alt="Carlos Ramirez">
+        <div>
+          <div class="testi-name">Carlos Ramirez</div>
+          <div class="testi-vehicle">Corvette C8 Convertible</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section bg-white" style="border-top:1px solid var(--border)">
+  <div class="section-header rev">
+    <div class="t-label-dk" style="margin-bottom:16px">FAQ</div>
+    <h2 class="t-h2">Common <em>Questions</em></h2>
+  </div>
+  <div class="faq-cols rev">
+    <div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="faqToggle(this)">How do I make a reservation?<span class="faq-plus">+</span></div>
+        <div class="faq-a"><div class="faq-a-inner">Simply call or text (360) 927-0408, or email thescottsdaledriveclub@gmail.com. We'll confirm availability and walk you through the process — no complex portals.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="faqToggle(this)">What documents do I need?<span class="faq-plus">+</span></div>
+        <div class="faq-a"><div class="faq-a-inner">A valid driver's license, proof of insurance, and a major credit card. We'll walk you through everything before pickup.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="faqToggle(this)">Is there a minimum age?<span class="faq-plus">+</span></div>
+        <div class="faq-a"><div class="faq-a-inner">Drivers must be at least 25 years of age with a clean driving record. Please confirm eligibility before booking.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="faqToggle(this)">Are prices all-inclusive?<span class="faq-plus">+</span></div>
+        <div class="faq-a"><div class="faq-a-inner">Daily rates are clearly stated and we'll discuss deposit, mileage, and terms before you confirm. No surprises at pickup.</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="faqToggle(this)">Can I rent for multiple days?<span class="faq-plus">+</span></div>
+        <div class="faq-a"><div class="faq-a-inner">Absolutely. Multi-day rentals are available and often preferred. Contact us to discuss availability and extended arrangements.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="faqToggle(this)">What if I get in an accident?<span class="faq-plus">+</span></div>
+        <div class="faq-a"><div class="faq-a-inner">We'll go over insurance requirements and damage policies before your rental. You'll need to carry your own coverage. Everything is explained clearly before you take the keys.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="faqToggle(this)">Do you offer delivery?<span class="faq-plus">+</span></div>
+        <div class="faq-a"><div class="faq-a-inner">Reach out directly to discuss delivery options. We're flexible and aim to make the process as convenient as possible.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="faqToggle(this)">How far in advance should I book?<span class="faq-plus">+</span></div>
+        <div class="faq-a"><div class="faq-a-inner">At least 24–48 hours in advance. Weekend and holiday availability goes fast, so earlier is always better.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section bg-light" id="contact" style="border-top:1px solid var(--border)">
+  <div class="section-header rev">
+    <div class="t-label-dk" style="margin-bottom:16px">Reservations</div>
+    <h2 class="t-h2">Let's Get You<br><em>Behind the Wheel</em></h2>
+  </div>
+  <div class="contact-grid rev">
+    <div class="contact-left">
+      <p class="t-body" style="max-width:360px">The easiest way to book is to call or text us directly. We're real people who love cars and will get back to you fast.</p>
+      <div class="contact-methods">
+        <div class="contact-method">
+          <div class="cm-icon">☎</div>
+          <div>
+            <div class="cm-l">Call or Text</div>
+            <div class="cm-v"><a href="tel:+13609270408">(360) 927-0408</a></div>
+          </div>
+        </div>
+        <div class="contact-method">
+          <div class="cm-icon">@</div>
+          <div>
+            <div class="cm-l">Email</div>
+            <div class="cm-v" style="font-size:16px"><a href="mailto:thescottsdaledriveclub@gmail.com">thescottsdaledriveclub@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="contact-method">
+          <div class="cm-icon">◎</div>
+          <div>
+            <div class="cm-l">Location</div>
+            <div class="cm-v">Scottsdale, AZ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-right">
+      <div class="t-label-dk" style="margin-bottom:32px">Send an Enquiry</div>
+      <div class="cf-row">
+        <div><label class="cf-label">First Name</label><input class="cf-input" type="text" placeholder="John"></div>
+        <div><label class="cf-label">Last Name</label><input class="cf-input" type="text" placeholder="Smith"></div>
+      </div>
+      <label class="cf-label">Email Address</label>
+      <input class="cf-input" type="email" placeholder="john@email.com">
+      <label class="cf-label">Phone Number</label>
+      <input class="cf-input" type="tel" placeholder="(555) 000-0000">
+      <label class="cf-label">Vehicle of Interest</label>
+      <select class="cf-select">
+        <option value="">Select a vehicle…</option>
+        <option>Audi R8 V10 — From $600/day</option>
+        <option>Mercedes S63 AMG Coupé — From $350/day</option>
+        <option>Corvette C8 Convertible — From $400/day</option>
+        <option>Toyota GR Supra 3.0 — From $300/day</option>
+      </select>
+      <label class="cf-label">Message / Dates</label>
+      <textarea class="cf-textarea" placeholder="Preferred dates, questions…"></textarea>
+      <button class="cf-submit" onclick="formSend(event)">Send Enquiry</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <img src="scottsdalelogo444.png" alt="Scottsdale Drive Club" class="footer-logo">
+      <p class="footer-tagline">Exotic and luxury car rentals in Scottsdale, Arizona. Curated for those who appreciate the drive.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-h">Fleet</div>
+      <ul>
+        <li><a href="#fleet" onclick="showCar('r8')">Audi R8 V10</a></li>
+        <li><a href="#fleet" onclick="showCar('s63')">Mercedes S63 AMG</a></li>
+        <li><a href="#fleet" onclick="showCar('c8')">Corvette C8</a></li>
+        <li><a href="#fleet" onclick="showCar('supra')">Toyota GR Supra</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-h">Company</div>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-h">Contact</div>
+      <ul>
+        <li><a href="tel:+13609270408">(360) 927-0408</a></li>
+        <li><a href="mailto:thescottsdaledriveclub@gmail.com">Email Us</a></li>
+        <li><a href="#">Scottsdale, AZ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Scottsdale Drive Club LLC. All rights reserved.</span>
+    <div class="footer-legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms &amp; Conditions</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>60));
+function mnavToggle(){ document.getElementById('mnav').classList.toggle('on'); }
+const imgs={
+  r8:['https://static.wixstatic.com/media/6bca23_47a4cdcfad8b4081bcaf6d2901fe8075~mv2.jpg','https://static.wixstatic.com/media/6bca23_75cc406f12ac488ba3c6ab8775451b6e~mv2.jpg','https://static.wixstatic.com/media/6bca23_f48aba61b9554369aaaca165b001d4be~mv2.jpg','https://static.wixstatic.com/media/6bca23_fb2f18b3aebd4cd9bd22b269d076d0d5~mv2.jpg','https://static.wixstatic.com/media/6bca23_835a4f6de2a147a3ad56cf0a2d41da23~mv2.jpg','https://static.wixstatic.com/media/6bca23_4c2c0e385d65415f9824aab5894a746f~mv2.jpg','https://static.wixstatic.com/media/6bca23_05ded1c26f274328b68262c1d8f7662c~mv2.jpg','https://static.wixstatic.com/media/6bca23_7a59df1e86cb4140b45cc2cc08afa266~mv2.jpg','https://static.wixstatic.com/media/6bca23_af36c9da66e34c7aa92ac7b6c8cbe63f~mv2.jpg'],
+  s63:['https://static.wixstatic.com/media/6bca23_4c9ee3f0d2144716a0b6432a57761cd8~mv2.jpg','https://static.wixstatic.com/media/6bca23_34ee653f68c942bf83eaf1e4fd6305b6~mv2.jpg','https://static.wixstatic.com/media/6bca23_4312fcd63cdf417ba99993aeb4607952~mv2.jpeg','https://static.wixstatic.com/media/6bca23_02d98e833a1c4250b2e28f5d416652aa~mv2.jpeg','https://static.wixstatic.com/media/6bca23_36a6010346e947c2bc4071d2bc2db1ac~mv2.jpg','https://static.wixstatic.com/media/6bca23_8b0d3022217c44348fa1ac7a28c5ed6b~mv2.jpg','https://static.wixstatic.com/media/6bca23_59db7966ca3f45beada7a1a3639e037c~mv2.jpg','https://static.wixstatic.com/media/6bca23_1feddf970877499289bee52265c46c00~mv2.jpg','https://static.wixstatic.com/media/6bca23_25a8f639bd074b67be7ba1cbef02aa9a~mv2.jpg'],
+  c8:['https://static.wixstatic.com/media/6bca23_3eec5bc79ac244df88f89247a6e44bea~mv2.jpg','https://static.wixstatic.com/media/6bca23_3a1693e7b1004ceeaf92589f7889baa4~mv2.jpg','https://static.wixstatic.com/media/6bca23_1ff36c16ee2e4c61a8c20134e100f634~mv2.jpg','https://static.wixstatic.com/media/6bca23_e248986673104cafa4a561cb88069698~mv2.jpg','https://static.wixstatic.com/media/6bca23_975d4df307ea4fbd90c3f64eb5e3114f~mv2.jpg','https://static.wixstatic.com/media/6bca23_3e9b8f15dbb74295943f321c439374dc~mv2.jpg'],
+  supra:['https://static.wixstatic.com/media/6bca23_6133ab55cba341f7b80fa792be4e6dd2~mv2.jpg','https://static.wixstatic.com/media/6bca23_fdab5e20a2d14a6bbe1fd1066d22034e~mv2.jpg','https://static.wixstatic.com/media/6bca23_3fe07d5bfd894f5089c8f3c0968e2b4f~mv2.jpg','https://static.wixstatic.com/media/6bca23_c6d2bc2f8d044055ace3ff32caf04617~mv2.jpg','https://static.wixstatic.com/media/6bca23_bca329c1a17f46f2b4fb4d3551e8a40f~mv2.jpg','https://static.wixstatic.com/media/6bca23_ce1971bb3f7f48d9b7694c92d7428b3b~mv2.jpg','https://static.wixstatic.com/media/6bca23_93f813a4e403479cb3652fbc6da1d9c8~mv2.jpg','https://static.wixstatic.com/media/6bca23_6a339e1115034d5a808136703e36c883~mv2.jpg','https://static.wixstatic.com/media/6bca23_d48e8ce0871043cb8082967036aa593a~mv2.jpg']
+};
+const idx={r8:0,s63:0,c8:0,supra:0};
+function buildThumbs(id){const w=document.getElementById('th-'+id);w.innerHTML='';imgs[id].forEach((s,i)=>{const t=document.createElement('img');t.className='thumb'+(i===0?' on':'');t.src=s;t.alt='';t.onclick=()=>goTo(id,i);w.appendChild(t);});}
+function goTo(id,i){idx[id]=i;document.getElementById('gm-'+id).src=imgs[id][i];document.getElementById('gc-'+id).textContent=(i+1)+' / '+imgs[id].length;document.querySelectorAll('#th-'+id+' .thumb').forEach((t,j)=>t.classList.toggle('on',j===i));}
+function shift(id,d){goTo(id,(idx[id]+d+imgs[id].length)%imgs[id].length);}
+function showCar(id,btn){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));document.getElementById('p-'+id).classList.add('on');if(btn)btn.classList.add('on');}
+let lbId='r8',lbI=0;
+function openLb(id){lbId=id;lbI=idx[id];document.getElementById('lb-img').src=imgs[id][lbI];document.getElementById('lb').classList.add('on');document.body.style.overflow='hidden';}
+document.getElementById('lbX').onclick=()=>{document.getElementById('lb').classList.remove('on');document.body.style.overflow='';};
+document.getElementById('lb-prev').onclick=()=>{lbI=(lbI-1+imgs[lbId].length)%imgs[lbId].length;document.getElementById('lb-img').src=imgs[lbId][lbI];};
+document.getElementById('lb-next').onclick=()=>{lbI=(lbI+1)%imgs[lbId].length;document.getElementById('lb-img').src=imgs[lbId][lbI];};
+document.addEventListener('keydown',e=>{if(!document.getElementById('lb').classList.contains('on'))return;if(e.key==='Escape'){document.getElementById('lb').classList.remove('on');document.body.style.overflow='';}if(e.key==='ArrowLeft')document.getElementById('lb-prev').click();if(e.key==='ArrowRight')document.getElementById('lb-next').click();});
+function faqToggle(el){el.parentElement.classList.toggle('open');}
+const io=new IntersectionObserver(en=>en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.07});
+document.querySelectorAll('.rev').forEach(el=>io.observe(el));
+function formSend(e){e.preventDefault();const b=e.target;b.textContent='✓ Sent — we\'ll be in touch shortly';b.style.background='var(--ink)';setTimeout(()=>{b.textContent='Send Enquiry';b.style.background='';},5000);}
+['r8','s63','c8','supra'].forEach(buildThumbs);
+</script>
+</body>
+</html>
